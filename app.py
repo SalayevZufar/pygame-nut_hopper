@@ -74,7 +74,7 @@ class Fruit(Basket):
         WINDOW.blit(text, textRect)
     # Collision of fruit   
     def catch_fruit(self):    
-        if((SCREEN_HEIGHT - BASKET_HEIGHT - 10) - 30) < self.y < (SCREEN_HEIGHT - BASKET_HEIGHT - 10) and basket.x < self.x < basket.x + PADDLE_WIDTH - 60:    
+        if((SCREEN_HEIGHT - BASKET_HEIGHT - 10) - 30) < self.y < (SCREEN_HEIGHT - BASKET_HEIGHT - 10) and basket.x < self.x < basket.x + BASKET_WIDTH - 60:    
             basket.score +=1 
             self.x = random.randrange(0,350)
             self.y = 0
@@ -100,7 +100,7 @@ class Bomb:
             self.y = 0
 # Collision of bomb    
     def lose_life(self):    
-        if((SCREEN_HEIGHT - BASKET_HEIGHT - 10) - 30) < bomb.y < (SCREEN_HEIGHT - BASKET_HEIGHT - 10) and basket.x < self.x < basket.x + PADDLE_WIDTH - 60:    
+        if((SCREEN_HEIGHT - BASKET_HEIGHT - 10) - 30) < bomb.y < (SCREEN_HEIGHT - BASKET_HEIGHT - 10) and basket.x < self.x < basket.x + BASKET_WIDTH - 60:    
             basket.health -=1
             self.x = random.randrange(0,350)
             self.y = 0
@@ -140,9 +140,9 @@ while run:
         if event.type == pygame.QUIT:
             run = False
             break
-        elif basket.health < 1:
-            run = False
-            break
+    if basket.health < 1:
+        run = False
+        break
     basket.draw(WINDOW)
     bomb.draw(WINDOW)
     fruit.draw(WINDOW)
