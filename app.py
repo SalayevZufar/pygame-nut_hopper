@@ -105,7 +105,7 @@ class Bomb:
             self.x = random.randrange(0,350)
             self.y = 0
 
-class Heath_bar(Basket):
+class Health_bar(Basket):
     
     def __init__(self,x,y,width,height):
         self.x = x
@@ -129,7 +129,7 @@ fruit = Fruit(0,50,50)
 fruit_2 = Fruit(0,50,50)
 fruit_image = Fruit(0,30,30)
 bomb = Bomb(0,50,50)
-health = Heath_bar(0,0,30,30)
+health = Health_bar(0,0,30,30)
 run = True
 
 while run:
