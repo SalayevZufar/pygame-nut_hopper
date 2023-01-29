@@ -13,8 +13,8 @@ BLACK = (0, 0, 0)
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 600
 
-PADDLE_WIDTH = 150
-PADDLE_HEIGHT =100
+BASKET_WIDTH = 150
+BASKET_HEIGHT =100
 
 
 WINDOW = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
@@ -36,7 +36,7 @@ class Basket():
         self.score = 0
     def move(self,SCREEN_WIDTH):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_RIGHT] and self.x - self.vel <= SCREEN_WIDTH - PADDLE_WIDTH :
+        if keys[pygame.K_RIGHT] and self.x - self.vel <= SCREEN_WIDTH - BASKET_WIDTH :
             self.x += self.vel
         if keys[pygame.K_LEFT] and self.x - self.vel >= 0:
             self.x -= self.vel
@@ -74,7 +74,7 @@ class Fruit(Basket):
         WINDOW.blit(text, textRect)
     # Collision of fruit   
     def catch_fruit(self):    
-        if((SCREEN_HEIGHT - PADDLE_HEIGHT - 10) - 30) < self.y < (SCREEN_HEIGHT - PADDLE_HEIGHT - 10) and basket.x < self.x < basket.x + PADDLE_WIDTH - 60:    
+        if((SCREEN_HEIGHT - BASKET_HEIGHT - 10) - 30) < self.y < (SCREEN_HEIGHT - BASKET_HEIGHT - 10) and basket.x < self.x < basket.x + PADDLE_WIDTH - 60:    
             basket.score +=1 
             self.x = random.randrange(0,350)
             self.y = 0
@@ -100,7 +100,7 @@ class Bomb:
             self.y = 0
 # Collision of bomb    
     def lose_life(self):    
-        if((SCREEN_HEIGHT - PADDLE_HEIGHT - 10) - 30) < bomb.y < (SCREEN_HEIGHT - PADDLE_HEIGHT - 10) and basket.x < self.x < basket.x + PADDLE_WIDTH - 60:    
+        if((SCREEN_HEIGHT - BASKET_HEIGHT - 10) - 30) < bomb.y < (SCREEN_HEIGHT - BASKET_HEIGHT - 10) and basket.x < self.x < basket.x + PADDLE_WIDTH - 60:    
             basket.health -=1
             self.x = random.randrange(0,350)
             self.y = 0
@@ -124,7 +124,7 @@ class Heath_bar(Basket):
         textRect.topleft = (30,0)
         WINDOW.blit(text, textRect)
         
-basket = Basket(SCREEN_WIDTH//2 - PADDLE_WIDTH//2 ,SCREEN_HEIGHT - PADDLE_HEIGHT - 10,PADDLE_WIDTH,PADDLE_HEIGHT)
+basket = Basket(SCREEN_WIDTH//2 - BASKET_WIDTH//2 ,SCREEN_HEIGHT - BASKET_HEIGHT - 10,BASKET_WIDTH,BASKET_HEIGHT)
 fruit = Fruit(0,50,50)
 fruit_2 = Fruit(0,50,50)
 fruit_image = Fruit(0,30,30)
